@@ -1,0 +1,443 @@
+* {
+  color: black;
+  font-family: "Mulish", sans-serif;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.login-pf body {
+  background-image: url("../img/background_img.png");
+}
+
+@media only screen and (max-width: 1200px) {
+  .login-pf body {
+    background-image: none;
+  }
+}
+
+/* Card keycloak */
+
+.card-pf {
+  border: none;
+  position: absolute;
+  margin: 0px;
+  left: 0px;
+  width: 100%;
+  max-width: 611px;
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 1200px) {
+  .card-pf {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+.login-pf-page {
+  position: relative;
+  padding: 0;
+  height: 100vh;
+}
+
+.login-pf-page .card-pf {
+  padding-right: 124px;
+  padding-left: 124px;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-pf-page .card-pf {
+    padding: 0;
+  }
+}
+
+/* Image section */
+
+.image-contain {
+  margin-top: 38px;
+  margin-bottom: 108px;
+  position: relative;
+  right: 50px;
+}
+
+#kc-username {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#reset-login {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1200px) {
+  .login-pf-header {
+    align-items: center;
+  }
+
+  .image-contain {
+    flex-grow: 1;
+    right: 0px;
+  }
+}
+
+/* Title section */
+
+.title-contain {
+  display: flex;
+  justify-content: center;
+}
+
+.title-text {
+  flex-grow: 1;
+}
+
+#kc-page-title {
+  margin: 0px;
+  text-align: left;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40.16px;
+}
+
+@media only screen and (max-width: 600px) {
+  #kc-page-title {
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  #kc-page-title {
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #kc-page-title {
+    text-align: center;
+  }
+}
+
+.sub-header {
+  font-size: 16px;
+  font-weight: 400px;
+  line-height: 20.08px;
+  margin-bottom: 50px;
+  margin-top: 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .sub-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .sub-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+#kc-reset-password-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  #kc-reset-password-form {
+    margin: 0 50px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #kc-register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  #kc-register-form {
+    margin: 0 68px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  #kc-sms-code-login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #kc-content {
+    width: 100%;
+  }
+
+  #kc-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+form#kc-otp-login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#kc-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* #kc-form-login {
+  max-width: 385px;
+} */
+
+/* Form input section */
+
+.form-group {
+  width: 385px;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-group {
+    max-width: 300px;
+  }
+}
+
+.pf-c-form__label.pf-c-form__label-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20.08px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.pf-c-input-group {
+  position: relative;
+  max-width: 385px;
+}
+
+.pf-c-form-control {
+  max-width: 385px;
+  height: 45px;
+  border: 1px solid #9e9e9e;
+  border-radius: 5px;
+  outline: none;
+}
+
+.pf-c-form-control[aria-invalid="true"] {
+  background-image: none;
+}
+
+.pf-c-form-control:focus {
+  border-bottom-width: 1px;
+}
+
+.pf-c-button.pf-m-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+  --pf-c-button--after--BorderColor: white;
+  position: absolute;
+  top: 7px;
+  right: 15px;
+  z-index: 99999;
+}
+
+#img-password,
+#img-password-confirm {
+  filter: opacity(30%);
+}
+
+.form-group .col-xs-12.col-sm-12.col-md-12.col-lg-12 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .form-group .col-xs-12.col-sm-12.col-md-12.col-lg-12:nth-child(even) {
+    justify-content: center;
+    max-width: 385px;
+  }
+}
+
+/* Form setting section */
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .form-group.login-pf-settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.form-group.login-pf-settings > div {
+  margin-top: 40px;
+}
+
+#kc-form-options .checkbox > label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17.57px;
+  color: #858e9e;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+#kc-form-options .checkbox > label > input {
+  width: 22px;
+  height: 22px;
+  accent-color: #506af7;
+  margin: 0px;
+}
+
+.checkbox input[type="checkbox"] {
+  position: relative;
+}
+
+.form-group.login-pf-settings > div > span > a {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17.57px;
+  color: #7b89e8;
+  text-decoration: none;
+}
+
+.form-group.login-pf-settings > div > span > a:hover {
+  filter: brightness(70%);
+}
+
+/* Button submit section */
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  #kc-form-buttons {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+#kc-form-buttons.form-group {
+  margin-top: 110px;
+}
+
+#kc-login {
+  width: 385px;
+  height: 53px;
+  border-radius: 5px;
+  background-color: #605fff;
+}
+
+@media only screen and (max-width: 600px) {
+  #kc-login {
+    max-width: 300px;
+  }
+}
+
+#kc-login:hover {
+  filter: brightness(90%);
+}
+
+.button-contain {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-default {
+  background-image: none;
+  color: #fff;
+}
+
+.btn-default:hover {
+  color: #fff;
+}
+
+.pf-c-button.pf-m-primary,
+.pf-c-button.btn-default {
+  width: 385px;
+  height: 53px;
+  border-radius: 5px;
+  background-color: #605fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .pf-c-button.pf-m-primary,
+  .pf-c-button.btn-default {
+    max-width: 300px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #kc-form-buttons {
+    justify-content: center;
+  }
+}
+
+/* Social login section */
+#kc-social-providers,
+#kc-info {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  #kc-social-providers,
+  #kc-info {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+#kc-social-providers {
+  width: 385px;
+}
+
+.social-login {
+  position: relative;
+  border-bottom: 0.5px solid gray;
+  height: 30px;
+  align-items: center;
+}
+
+.social-login > a {
+  text-decoration: none;
+}
+
+/* Instruction section */
+@media only screen and (max-width: 600px) {
+  .instruction {
+    padding: 0px 5px;
+  }
+}
