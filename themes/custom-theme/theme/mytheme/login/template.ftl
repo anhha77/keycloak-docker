@@ -92,23 +92,13 @@
                     </div> -->
                     <div class="col-md-10 title-text">
                         <h1 id="kc-page-title"><#nested "header">
-                            <#if locale.current == "English">
-                                <p class="sub-header">Please enter your detail</p>
-                            <#else>
-                                <p class="sub-header">Hãy nhập thông tin của bạn</p>
-                            </#if>
-                            
+                            <p class="sub-header">${msg("enterYourDetail")}</p> 
                         </h1>
                     </div>
                 </div>
             <#else>
                 <h1 id="kc-page-title"><#nested "header">
-                    <#if locale.current == "English">
-                        <p class="sub-header">Please enter your detail</p>
-                    <#else>
-                        <p class="sub-header">Hãy nhập thông tin của bạn</p>
-                    </#if>
-                    
+                    <p class="sub-header">${msg("enterYourDetail")}</p>
                 </h1>
             </#if>
         <#else>
@@ -186,6 +176,7 @@
       </div>
 
     </div>
+
   </div>
 </body>
 </html>

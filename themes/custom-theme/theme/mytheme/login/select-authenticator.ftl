@@ -16,22 +16,10 @@
                         </div>
                         <div class="${properties.kcSelectAuthListItemBodyClass!}">
                             <div class="${properties.kcSelectAuthListItemHeadingClass!}">
-                                <#-- ${msg('${authenticationSelection.displayName}')} -->
-                                
-                                <#if authenticationSelection?index == 0>
-                                    ${msg("emailOTP")}
-                                <#else>
-                                    ${msg("smsOTP")}
-                                </#if>
+                                ${msg('${authenticationSelection.displayName}')}
                             </div>
                             <div class="${properties.kcSelectAuthListItemDescriptionClass!}">
-                                <#-- ${msg('${authenticationSelection.helpText}')} -->
-
-                                <#if authenticationSelection?index == 0>
-                                    ${msg("emailDesc")}
-                                <#else>
-                                    ${msg("smsDesc")}
-                                </#if>
+                                ${msg('${authenticationSelection.helpText}')}
                             </div>
                         </div>
                         <div class="${properties.kcSelectAuthListItemFillClass!}"></div>
