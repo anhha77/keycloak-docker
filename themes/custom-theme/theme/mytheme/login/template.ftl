@@ -55,6 +55,57 @@
 </head>
 
 <body class="${properties.kcBodyClass!}">
+<div class="nav-contain">
+    <div class="logo-img-contain">
+        <img class="logo-img" src="${url.resourcesPath}/img/logo_SNPL.png" alt="logo-icon"/>
+    </div>
+    <div class="button-contain-nav">
+        <p class="nav-text">${msg("loginRedirectTitle")}</p>
+        <a class="nav-text" id="login-redirect" href="${url.loginUrl}">${msg("loginRedirectBtnTitle")}</a>
+        <a class="nav-text" id="reset-login" href="${url.loginRestartFlowUrl}">${msg("loginRedirectBtnTitle")}</a>
+    </div>
+</div>
+<div class="nav-contain-mobile">
+    
+    <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
+        <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
+            <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
+                <div id="kc-locale-dropdown" class="menu-button-links ${properties.kcLocaleDropDownClass!}">
+                    <button tabindex="1" id="kc-current-locale-link" aria-label="${msg("languages")}" aria-haspopup="true" aria-expanded="false" aria-controls="language-switch1">${locale.current}</button>
+                    <ul role="menu" tabindex="-1" aria-labelledby="kc-current-locale-link" aria-activedescendant="" id="language-switch1" class="${properties.kcLocaleListClass!}">
+                        <#assign i = 1>
+                        <#list locale.supported as l>
+                            <li class="${properties.kcLocaleListItemClass!}" id="${i-1}" role="none" onclick="getLanguages(${i-1})">
+                                <a role="menuitem" id="language-${i}" class="${properties.kcLocaleItemClass!}" href="${l.url}">${l.label}</a>
+                            </li>
+                            <#assign i++>
+                        </#list>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </#if>
+
+    <div id="nav-link-contain-mobile">
+        <a href="${url.loginUrl}" id="login-redirect-mobile">
+            <svg width="9" height="18" viewBox="0 0 9 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.99984 16.92L1.47984 10.4C0.709844 9.62999 0.709844 8.36999 1.47984 7.59999L7.99984 1.07999" stroke="#1F1F1F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+
+        <a href="${url.loginRestartFlowUrl}" id="reset-redirect-mobile">
+            <svg width="9" height="18" viewBox="0 0 9 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.99984 16.92L1.47984 10.4C0.709844 9.62999 0.709844 8.36999 1.47984 7.59999L7.99984 1.07999" stroke="#1F1F1F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <h1 id="nav-mobile-title"><#nested "header"></h1>
+    </div>
+    
+    <div class="help-text-contain-mobile">
+        <p class="help-text">${msg("helpTextLoginMethod")}</p>
+    </div>
+
+</div>
 <div class="${properties.kcLoginClass!}">
     <#-- <div id="kc-header" class="${properties.kcHeaderClass!}">
         <div id="kc-header-wrapper"
@@ -64,9 +115,10 @@
     <div class="${properties.kcFormCardClass!}">
         <header class="${properties.kcFormHeaderClass!}">
             <div class="image-contain">
+                <div class="overlay-contain"></div>
                 <img src="${url.resourcesPath}/img/Logosnp.jpg" alt="logo-icon" class="img-logo"/>
             </div>
-            <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
+            <#-- <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                 <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
                     <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
                         <div id="kc-locale-dropdown" class="menu-button-links ${properties.kcLocaleDropDownClass!}">
@@ -83,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-            </#if>
+            </#if> --> 
         <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
             <#if displayRequiredFields>
                 <div class="${properties.kcContentWrapperClass!} title-contain">
@@ -91,15 +143,59 @@
                         <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
                     </div> -->
                     <div class="col-md-10 title-text">
-                        <h1 id="kc-page-title"><#nested "header">
+                        <h1 id="kc-page-title">
+                            <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
+                                <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
+                                    <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
+                                        <div id="kc-locale-dropdown" class="menu-button-links ${properties.kcLocaleDropDownClass!}">
+                                            <button tabindex="1" id="kc-current-locale-link" aria-label="${msg("languages")}" aria-haspopup="true" aria-expanded="false" aria-controls="language-switch1">${locale.current}</button>
+                                            <ul role="menu" tabindex="-1" aria-labelledby="kc-current-locale-link" aria-activedescendant="" id="language-switch1" class="${properties.kcLocaleListClass!}">
+                                                <#assign i = 1>
+                                                <#list locale.supported as l>
+                                                    <li class="${properties.kcLocaleListItemClass!}" id="${i-1}" role="none" onclick="getLanguages(${i-1})">
+                                                        <a role="menuitem" id="language-${i}" class="${properties.kcLocaleItemClass!}" href="${l.url}">${l.label}</a>
+                                                    </li>
+                                                    <#assign i++>
+                                                </#list>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </#if>
+                            <#nested "header">
                             <p class="sub-header">${msg("enterYourDetail")}</p> 
                         </h1>
+                        <div class="help-text-contain">
+                            <p class="help-text">${msg("helpTextLoginMethod")}</p>
+                        </div>
                     </div>
                 </div>
             <#else>
-                <h1 id="kc-page-title"><#nested "header">
+                <h1 id="kc-page-title">
+                    <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
+                        <div class="${properties.kcLocaleMainClass!} hi" id="kc-locale">
+                            <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
+                                <div id="kc-locale-dropdown" class="menu-button-links ${properties.kcLocaleDropDownClass!}">
+                                    <button tabindex="1" id="kc-current-locale-link" aria-label="${msg("languages")}" aria-haspopup="true" aria-expanded="false" aria-controls="language-switch1">${locale.current}</button>
+                                    <ul role="menu" tabindex="-1" aria-labelledby="kc-current-locale-link" aria-activedescendant="" id="language-switch1" class="${properties.kcLocaleListClass!}">
+                                        <#assign i = 1>
+                                        <#list locale.supported as l>
+                                            <li class="${properties.kcLocaleListItemClass!}" id="${i-1}" role="none" onclick="getLanguages(${i-1})">
+                                                <a role="menuitem" id="language-${i}" class="${properties.kcLocaleItemClass!}" href="${l.url}">${l.label}</a>
+                                            </li>
+                                            <#assign i++>
+                                        </#list>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </#if>
+                    <#nested "header">
                     <p class="sub-header">${msg("enterYourDetail")}</p>
                 </h1>
+                <div class="help-text-contain">
+                    <p class="help-text">${msg("helpTextLoginMethod")}</p>
+                </div>
             </#if>
         <#else>
             <#if displayRequiredFields>
@@ -109,27 +205,49 @@
                     </div> -->
                     <div class="col-md-10">
                         <#nested "show-username">
+                        <h1 id="title-form-action"><#nested "header"></h1>
                         <div id="kc-username" class="${properties.kcFormGroupClass!}">
                             <label id="kc-attempted-username">${auth.attemptedUsername}</label>
-                            <a id="reset-login" href="${url.loginRestartFlowUrl}" aria-label="${msg("restartLoginTooltip")}">
+                            <#-- <a id="reset-login" href="${url.loginRestartFlowUrl}" aria-label="${msg("restartLoginTooltip")}">
                                 <div class="kc-login-tooltip">
                                     <i class="${properties.kcResetFlowIcon!}"></i>
                                     <span class="kc-tooltip-text">${msg("restartLoginTooltip")}</span>
                                 </div>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
             <#else>
                 <#nested "show-username">
+                <h1 id="title-form-action">
+                    <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
+                        <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
+                            <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
+                                <div id="kc-locale-dropdown" class="menu-button-links ${properties.kcLocaleDropDownClass!}">
+                                    <button tabindex="1" id="kc-current-locale-link" aria-label="${msg("languages")}" aria-haspopup="true" aria-expanded="false" aria-controls="language-switch1">${locale.current}</button>
+                                    <ul role="menu" tabindex="-1" aria-labelledby="kc-current-locale-link" aria-activedescendant="" id="language-switch1" class="${properties.kcLocaleListClass!}">
+                                        <#assign i = 1>
+                                        <#list locale.supported as l>
+                                            <li class="${properties.kcLocaleListItemClass!}" id="${i-1}" role="none" onclick="getLanguages(${i-1})">
+                                                <a role="menuitem" id="language-${i}" class="${properties.kcLocaleItemClass!}" href="${l.url}">${l.label}</a>
+                                            </li>
+                                            <#assign i++>
+                                        </#list>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </#if>
+                    <#nested "header">
+                </h1>
                 <div id="kc-username" class="${properties.kcFormGroupClass!}">
                     <label id="kc-attempted-username">${auth.attemptedUsername}</label>
-                    <a id="reset-login" href="${url.loginRestartFlowUrl}" aria-label="${msg("restartLoginTooltip")}">
+                    <#-- <a id="reset-login" href="${url.loginRestartFlowUrl}" aria-label="${msg("restartLoginTooltip")}">
                         <div class="kc-login-tooltip">
                             <i class="${properties.kcResetFlowIcon!}"></i>
                             <span class="kc-tooltip-text">${msg("restartLoginTooltip")}</span>
                         </div>
-                    </a>
+                    </a> -->
                 </div>
             </#if>
         </#if>
@@ -155,7 +273,8 @@
 
           <#if auth?has_content && auth.showTryAnotherWayLink()>
               <form id="kc-select-try-another-way-form" action="${url.loginAction}" method="post">
-                  <div class="${properties.kcFormGroupClass!}">
+                  <div class="${properties.kcFormGroupClass!} login-method-contain">
+                      <p class="instruction-login-method">${msg("instructionLoginMethod")}</p>
                       <input type="hidden" name="tryAnotherWay" value="on"/>
                       <a href="#" id="try-another-way"
                          onclick="document.forms['kc-select-try-another-way-form'].submit();return false;">${msg("doTryAnotherWay")}</a>
@@ -178,6 +297,8 @@
     </div>
 
   </div>
+
+  
 </body>
 </html>
 </#macro>

@@ -123,4 +123,7 @@
         </form>
         <script type="module" src="${url.resourcesPath}/js/passwordVisibility.js"></script>
     </#if>
+    <div class="bg-img-contain">
+        <img src="${url.resourcesPath}/img/background_img.png" alt="bg-img" class="bg-img"/>
+    </div>
 </@layout.registrationLayout>

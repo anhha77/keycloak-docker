@@ -27,7 +27,163 @@
                 v.src = "${url.resourcesPath}/img/eye-off.png";
             }
         }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const formSubmit = document.getElementById("kc-passwd-update-form");
+            const passwordInput = document.getElementById("password-new");
+            const confirmPasswordInput = document.getElementById("password-confirm");
+            const passErrMsg = document.getElementById("input-error-password");
+            const confirmErrMsg = document.getElementById("input-error-password-confirm");
+            const unmacthErrMsg = document.getElementById("unmatch-pass");
+
+            formSubmit.addEventListener("submit", (event) => {
+                if (passwordInput.value === "" || confirmPasswordInput.value === "") {
+                    event.preventDefault();
+                    passErrMsg.classList.add("show");
+                    confirmErrMsg.classList.add("show");
+                    passErrMsg.classList.remove("hide");
+                    confirmErrMsg.classList.remove("hide");
+                    unmacthErrMsg.classList.add("hide");
+                    unmacthErrMsg.classList.remove("show");
+                    if (passwordInput.value !== "") {
+                        passErrMsg.classList.add("hide");
+                        passErrMsg.classList.remove("show");
+                    }
+                    if (confirmPasswordInput.value !== "") {
+                        confirmErrMsg.classList.add("hide");
+                        confirmErrMsg.classList.remove("show");
+                    }
+                }
+                else {
+                    passErrMsg.classList.add("hide");
+                    confirmErrMsg.classList.add("hide");
+                    passErrMsg.classList.remove("show");
+                    confirmErrMsg.classList.remove("show");
+                    if (passwordInput.value !== confirmPasswordInput.value) {
+                        event.preventDefault();
+                        unmacthErrMsg.classList.add("show");
+                        unmacthErrMsg.classList.remove("hide");
+                    }
+                }
+            })
+        })
     </script>
+
+    <style>
+        @media screen and (max-width: 768px) {
+            .login-pf body {
+                background-image: none;
+            }
+        }
+
+        .image-contain {
+            display: none;
+        }
+
+        .login-pf-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 20px;
+        }
+
+        .card-pf {
+            left: auto;
+            border-radius: 5px;
+        }
+
+        .login-pf-page .card-pf {
+            max-width: 550px;
+            min-height: auto;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .login-pf-page .card-pf {
+                top: 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .login-pf-page .card-pf {
+                position: absolute;
+                top: 30px;
+                box-shadow: none;
+            }
+        }
+
+        .nav-contain {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-contain {
+                display: none;
+            }
+        }
+
+        .button-contain-nav {
+            display: none;
+        }
+
+        .logo-img {
+            margin-left: 64px;
+        }
+
+        #kc-page-title {
+            text-align: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            #kc-page-title {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            #login-redirect-mobile > svg {
+                display: none;
+            }
+
+            .nav-contain-mobile {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 20px;
+                justify-content: center;
+            }
+
+            #nav-mobile-title {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 22.59px;
+                
+            }
+
+            #login-redirect-mobile {
+                display: flex;
+                align-items: center;
+            }
+
+            #login-redirect-mobile > svg {
+                margin-left: -30px;
+            }
+        }
+
+        #kc-info-wrapper {
+            display: none;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
     
     <#if section = "header">
         ${msg("updatePasswordTitle")}
@@ -52,11 +208,19 @@
                         </button>
                     </div>
 
-                    <#if messagesPerField.existsError('password')>
+                    <#--<#if messagesPerField.existsError('password')>
                         <span id="input-error-password" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
                             ${kcSanitize(messagesPerField.get('password'))?no_esc}
                         </span>
-                    </#if>
+                    </#if> -->
+
+                    <span id="input-error-password" class="${properties.kcInputErrorMessageClass!} hide" aria-live="polite">
+                        ${msg("missingPasswordMessage")}
+                    </span>
+
+                    <span id="unmatch-pass" class="${properties.kcInputErrorMessageClass!} hide" aria-live="polite">
+                        ${msg("notMatchPasswordMessage")}
+                    </span>
                 </div>
             </div>
 
@@ -80,11 +244,15 @@
                         </button>
                     </div>
 
-                    <#if messagesPerField.existsError('password-confirm')>
+                    <#-- <#if messagesPerField.existsError('password-confirm')>
                         <span id="input-error-password-confirm" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
                             ${kcSanitize(messagesPerField.get('password-confirm'))?no_esc}
                         </span>
-                    </#if>
+                    </#if> --> 
+
+                    <span id="input-error-password-confirm" class="${properties.kcInputErrorMessageClass!} hide" aria-live="polite">
+                       ${msg("missingConfirmPasswordMessage")}
+                    </span>
 
                 </div>
             </div>

@@ -17,18 +17,47 @@ input:-webkit-autofill:active {
 }
 
 .login-pf body {
-  background-image: url("../img/background_img.png");
+  background-image: url("../img/background.png");
 }
 
 @media only screen and (max-width: 1200px) {
-  .login-pf body {
+  /* .login-pf body {
     background-image: none;
+  } */
+
+  .bg-img {
+    display: none;
   }
 }
 
-/* .login-pf-page {
+.login-pf-page {
   display: flex;
 }
+
+.bg-img-contain {
+  display: flex;
+  position: fixed;
+  top: 50vh;
+  right: 0px;
+  transform: translateY(-50%);
+  width: 52%;
+}
+
+@media screen and (max-width: 1280px) {
+  .bg-img-contain {
+    width: 40%;
+    transform: translate(-15%, -50%);
+  }
+}
+
+/* @media screen and (min-height: 801px) {
+  .bg-img {
+    right: 40px;
+    transform: translateY(30%);
+  }
+} */
+
+/* 
 
 .background-contain {
   background-image: url("../img/background_img1.png");
@@ -74,51 +103,109 @@ input:-webkit-autofill:active {
   }
 }
 
+.nav-contain {
+  display: none;
+}
+
+.nav-contain-mobile {
+  display: none;
+}
+
+#login-redirect,
+#reset-login,
+#login-redirect-mobile,
+#reset-redirect-mobile {
+  display: none;
+}
+
 /* Image section */
 
 .image-contain {
   margin-top: 38px;
-  margin-bottom: 108px;
+  margin-bottom: 67px;
   position: relative;
   right: 50px;
+}
+
+#title-form-action {
+  display: none;
 }
 
 #kc-username {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 }
 
-#reset-login {
+/* #reset-login {
   display: flex;
   align-items: center;
-}
+} */
 
 @media only screen and (max-width: 1200px) {
   .login-pf-header {
     align-items: center;
   }
 
+  .overlay-contain {
+    display: flex;
+  }
+
   .image-contain {
     right: 0px;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     margin: 0;
-    padding-top: 66.6%;
+    padding-top: 83%;
     position: relative;
-    background-image: url("../img/background_img.png");
+    background-image: url("../img/background_img_phone.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
+  .overlay-contain {
+    position: absolute;
+    top: 0;
+    height: 40%;
+    width: 100%;
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.28),
+      rgba(255, 255, 255, 0)
+    );
+  }
+
   .img-logo {
     position: absolute;
-    top: 10%;
-    left: 5%;
-    width: 30%;
+    top: 0;
+    margin-left: 8%;
+    width: 35%;
+    z-index: 100;
   }
+}
+
+#kc-locale {
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  #kc-locale-dropdown {
+    position: relative;
+  }
+
+  #kc-locale {
+    position: relative;
+    top: 0;
+    right: 0px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+#kc-locale ul {
+  right: 20px;
 }
 
 /* Title section */
@@ -138,6 +225,8 @@ input:-webkit-autofill:active {
   font-size: 32px;
   font-weight: 600;
   line-height: 40.16px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media only screen and (max-width: 600px) {
@@ -160,12 +249,21 @@ input:-webkit-autofill:active {
   }
 }
 
+.help-text-contain {
+  display: none;
+}
+
+.help-text-contain-mobile {
+  display: none;
+}
+
 .sub-header {
   font-size: 16px;
   font-weight: 400px;
   line-height: 20.08px;
   margin-bottom: 50px;
   margin-top: 24px;
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {
@@ -320,7 +418,6 @@ form#kc-otp-login-form {
 
 @media only screen and (min-width: 600px) and (max-width: 768px) {
   .form-group .col-xs-12.col-sm-12.col-md-12.col-lg-12:nth-child(even) {
-    justify-content: center;
     max-width: 385px;
   }
 }
@@ -442,6 +539,10 @@ form#kc-otp-login-form {
 }
 
 /* Social login section */
+#kc-info-wrapper {
+  background-color: rgb(255, 255, 255);
+}
+
 #kc-social-providers,
 #kc-info {
   width: 100%;
@@ -475,4 +576,15 @@ form#kc-otp-login-form {
   .instruction {
     padding: 0px 5px;
   }
+}
+
+.login-method-contain {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#try-another-way {
+  color: #898989;
+  text-decoration: underline;
 }

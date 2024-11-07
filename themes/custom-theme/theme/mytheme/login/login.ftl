@@ -1,5 +1,16 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
+    
+    <style>
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none; 
+        }
+    </style>
+    
     <script>
         function togglePassword() {
             const x = document.getElementById("password");
@@ -13,6 +24,44 @@
                 v.src = "${url.resourcesPath}/img/eye-off.png";
             }
         }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const formLogin = document.getElementById("kc-form-login");
+            const usernameInput = document.getElementById("username");
+            const passwordInput = document.getElementById("password");
+            const usernameErrMsg = document.getElementById("input-error-username");
+            const passwordErrMsg = document.getElementById("input-error-password");
+            const errMsg = document.getElementById("input-error");
+
+
+            formLogin.addEventListener("submit", (event) => {
+                if (usernameInput.value === "" || passwordInput.value === "") {
+                    event.preventDefault();
+                    if (errMsg !== null) {
+                        errMsg.style.display = "none";
+                    }
+                    usernameErrMsg.classList.add("show");
+                    passwordErrMsg.classList.add("show");
+                    usernameErrMsg.classList.remove("hide");
+                    passwordErrMsg.classList.remove("hide");
+                    if (usernameInput.value !== "") {
+                        usernameErrMsg.classList.add("hide");
+                        usernameErrMsg.classList.remove("show");
+                    }
+                    if (passwordInput.value !== "") {
+                        passwordErrMsg.classList.add("hide");
+                        passwordErrMsg.classList.remove("show");
+                    }
+                }
+                else {
+                    usernameErrMsg.classList.add("hide");
+                    passwordErrMsg.classList.add("hide");
+                    usernameErrMsg.classList.remove("show");
+                    passwordErrMsg.classList.remove("show");
+                }
+            })
+        })
+        
     </script>
     
     <#if section = "header">
@@ -21,7 +70,7 @@
         <div id="kc-form">
           <div id="kc-form-wrapper">
             <#if realm.password>
-                <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
+                <form id="kc-form-login"  action="${url.loginAction}" method="post">
                     <#if !usernameHidden??>
                         <div class="${properties.kcFormGroupClass!}">
                             <label for="username" class="${properties.kcLabelClass!}"><#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("email")}</#if></label>
@@ -37,6 +86,10 @@
                                 </span>
                             </#if>
 
+                            <span id="input-error-username" class="${properties.kcInputErrorMessageClass!} hide" aria-live="polite">
+                                ${msg("usernameRequired")}
+                            </span>
+
                         </div>
                     </#if>
 
@@ -47,6 +100,8 @@
                             <input tabindex="3" id="password" class="${properties.kcInputClass!}" name="password" type="password" autocomplete="current-password"
                                    aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                             />
+                            
+
                             <button class="${properties.kcFormPasswordVisibilityButtonClass!}" type="button" aria-label="${msg("showPassword")}" onclick="togglePassword()"
                                     aria-controls="password" tabindex="4"
                                     data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}" data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
@@ -63,6 +118,9 @@
 
                             </button>
                         </div>
+                        <span id="input-error-password" class="${properties.kcInputErrorMessageClass!} hide" aria-live="polite">
+                                ${msg("passwordRequired")}
+                        </span>
 
                         <#if usernameHidden?? && messagesPerField.existsError('username','password')>
                             <span id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
@@ -102,6 +160,7 @@
             </#if>
             </div>
         </div>
+        
         <script type="module" src="${url.resourcesPath}/js/passwordVisibility.js"></script>
     <#elseif section = "info" >
         <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
@@ -136,5 +195,9 @@
             </div>
         </#if>
     </#if>
+    <div class="bg-img-contain">
+        <img src="${url.resourcesPath}/img/background_img.png" alt="bg-img" class="bg-img"/>
+    </div>
+    
 
 </@layout.registrationLayout>
